@@ -43,22 +43,5 @@ defmodule Cuadrados do
     IO.puts("Imagen creada: #{archivo} (#{cantidad} cuadrados, lado #{lado}, reduccion #{reduccion})")
   end
 
-  # Caso recursivo: Permite dibujar un cuadrado y se llama devuelta pero con otro mas pequeño.
-  defp cuadrados(x, y, lado, faltante, reduccion, [color | resto], acc) do
-    rect =
-      ~s(<rect x="#{x}" y="#{y}" width="#{lado}" height="#{lado}" ) <>
-        ~s(fill="none" stroke="#{color}" stroke-width="#{@grosor}"/>\n)
 
-    desplazamiento = reduccion / 2
-
-    cuadrados(
-      x + desplazamiento,
-      y + desplazamiento,
-      lado - reduccion,
-      faltante - 1,
-      reduccion,
-      resto ++ [color],
-      acc <> rect
-    )
-  end
 end
