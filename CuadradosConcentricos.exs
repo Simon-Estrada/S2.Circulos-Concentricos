@@ -43,5 +43,8 @@ defmodule Cuadrados do
     IO.puts("Imagen creada: #{archivo} (#{cantidad} cuadrados, lado #{lado}, reduccion #{reduccion})")
   end
 
+  # Caso 1: Cuando ya se dibujaron todos los cuadros solicitados.
+  defp cuadrados(_x, _y, _lado, faltantes, _reduccion, _colores, acc ) when faltantes <= 0, do: acc
+
 
 end
