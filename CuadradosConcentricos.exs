@@ -24,9 +24,6 @@ defmodule Cuadrados do
   - `lado`: Longitud del lado del cuadrado más grande.
   - `cantidad`: Cantidad de cuadrados concéntricos a generar.
   - `reduccion`: Factor de reducción para cada cuadrado concéntrico.
-  ## Ejemplo
-      iex> Cuadrados.generar("cuadrados.svg", 200, 5, 0.8)
-      :ok
   """
   def generar(archivo, lado, cantidad, reduccion) do
     total = lado + 2 * @margen
@@ -71,3 +68,4 @@ defmodule Cuadrados do
   end
 
 end
+Cuadrados.generar("cuadrados.svg", 270, 7, 38)
