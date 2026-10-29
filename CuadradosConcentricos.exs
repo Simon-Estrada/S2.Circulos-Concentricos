@@ -46,7 +46,9 @@ defmodule Cuadrados do
   # Caso 1: Cuando ya se dibujaron todos los cuadros solicitados.
   defp cuadrados(_x, _y, _lado, faltantes, _reduccion, _colores, acc ) when faltantes <= 0, do: acc
 
-
+  # Caso 2: Cuando el lado ya no es positivo (lado <= 0)
+  # Previene que se dibujen cuadrados con dimensiones negativas o nulas si la reducción es muy grande.
+  defp cuadrados(_x, _y, lado, _faltantes, _reduccion, _colores, acc) when lado <= 0, do: acc
 
   # Caso 3: El caso recursivo (Se dibuja cuadro por cuadro)
   defp cuadrados(x, y, lado, faltantes, reduccion, [color_actual | colores_restantes], acc) do
@@ -67,5 +69,5 @@ defmodule Cuadrados do
     nuevo_acc = acc <> rect_actual
     cuadrados(nueva_x, nueva_y, nuevo_lado, faltantes - 1, reduccion, siguientes_colores, nuevo_acc)
   end
- 
+
 end
