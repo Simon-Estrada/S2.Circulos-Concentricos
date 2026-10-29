@@ -30,7 +30,7 @@ defmodule Cuadrados do
   """
   def generar(archivo, lado, cantidad, reduccion) do
     total = lado + 2 * @margen
-    figura = cuadrados(@margen, @margen, lado, cantidad, reduccion, "")
+    figura = cuadrados(@margen, @margen, lado, cantidad, reduccion, @colores, "")
 
     svg = """
     <svg xmlns="http://www.w3.org/2000/svg" width="#{total}" height="#{total}">
@@ -47,4 +47,25 @@ defmodule Cuadrados do
   defp cuadrados(_x, _y, _lado, faltantes, _reduccion, _colores, acc ) when faltantes <= 0, do: acc
 
 
+
+  # Caso 3: El caso recursivo (Se dibuja cuadro por cuadro)
+  defp cuadrados(x, y, lado, faltantes, reduccion, [color_actual | colores_restantes], acc) do
+    # 1. Generamos la etiqueta SVG del cuadrado actual, utilizando el color extraído de la lista de colores.
+    rect_actual = """
+    <rect x="#{x}" y="#{y}" width="#{lado}" height="#{lado}" fill="none" stroke="#{color_actual}" stroke-width="#{@grosor}"/>
+    """
+
+    # 2. Calculamos los valores para el siguiente cuadrado concéntrico.
+    nuevo_lado = lado - reduccion
+    nueva_x = x + (reduccion / 2)
+    nueva_y = y + (reduccion / 2)
+
+    # 3. Reorganizamos la lista de collores para que sea un ciclo infinito (el primero se mueve al final).
+    siguientes_colores = colores_restantes ++ [color_actual]
+
+    # 4. Acumulamos el texto generado y llamamos nuevamente a la función.
+    nuevo_acc = acc <> rect_actual
+    cuadrados(nueva_x, nueva_y, nuevo_lado, faltantes - 1, reduccion, siguientes_colores, nuevo_acc)
+  end
+ 
 end
