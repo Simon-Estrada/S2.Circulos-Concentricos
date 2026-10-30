@@ -8,7 +8,7 @@ defmodule Cuadrados do
   - **Fecha:** octubre de 2026
   - **Licencia:** GNU GPL v3
   """
-  # Este valor lo tomamos del ejemplo cuadrados.svg el cual
+  # Este valor lo tomamos del ejemplo cuadrados.svg el cuál
   # El profesor Adjunto en las Aulas Virtuales
   @margen 15
   # Grosor de los cuadrados, en svg se tiene un Stroke-width="3"
@@ -53,13 +53,13 @@ defmodule Cuadrados do
     rect_actual = """
     <rect x="#{x}" y="#{y}" width="#{lado}" height="#{lado}" fill="none" stroke="#{color_actual}" stroke-width="#{@grosor}"/>
     """
-    
+
     # 2. Calculamos los valores para el siguiente cuadrado concéntrico.
     nuevo_lado = lado - reduccion
     nueva_x = x + (reduccion / 2)
     nueva_y = y + (reduccion / 2)
 
-    # 3. Reorganizamos la lista de collores para que sea un ciclo infinito (el primero se mueve al final).
+    # 3. Reorganizamos la lista de colores para que sea un ciclo infinito (el primero se mueve al final).
     siguientes_colores = colores_restantes ++ [color_actual]
 
     # 4. Acumulamos el texto generado y llamamos nuevamente a la función.
