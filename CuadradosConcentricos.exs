@@ -53,7 +53,7 @@ defmodule Cuadrados do
     rect_actual = """
     <rect x="#{x}" y="#{y}" width="#{lado}" height="#{lado}" fill="none" stroke="#{color_actual}" stroke-width="#{@grosor}"/>
     """
-
+    
     # 2. Calculamos los valores para el siguiente cuadrado concéntrico.
     nuevo_lado = lado - reduccion
     nueva_x = x + (reduccion / 2)
